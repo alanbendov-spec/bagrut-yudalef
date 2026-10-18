@@ -77,4 +77,4 @@ Instrucción original: “Answer questions 1–7 in English according to Text 1.
 - Whisper local validó `s02`, `s10` y `p4-he`; contenido hebreo inteligible (una transcripción automática confundió “סריקה” con “שריקה”).
 - Controles: flechas/PageUp/PageDown; espacio = revelar; T = cronómetro; F = pantalla completa; botón “Use offline MP4”.
 - QA: 1280×720 sin overflow; cinco capturas en `output/playwright/`; PDF A4 de una página y captura `output/playwright/hoja-pdf.png`.
-- Publicación prevista: `https://alanbendov-spec.github.io/bagrut-yudalef/clase-3/` con `noindex`.
+- Publicación verificada (HTTP 200): `https://alanbendov-spec.github.io/bagrut-yudalef/clase-3/` con `noindex`.
