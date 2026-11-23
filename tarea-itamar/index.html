@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing Task · Itamar Yochanan</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0b1120;
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 16px 20px;
+    }
+    h1 { font-size: 28px; margin: 8px 0; }
+    h2 { font-size: 24px; margin: 8px 0 14px; }
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 14px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border: 1px solid #334155;
+    }
+    .he { direction: rtl; text-align: right; line-height: 1.6; }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+    .top-bar b { color: #fbbf24; }
+    .nav-steps {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .nav-step {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 15px;
+      color: #94a3b8;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav-step.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #3b82f6;
+      font-weight: bold;
+    }
+    .nav-step.done {
+      background: #064e3b;
+      color: #a7f3d0;
+      border-color: #059669;
+    }
+    button {
+      font-size: 18px;
+      font-weight: 700;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 22px;
+      cursor: pointer;
+      color: #fff;
+      background: #2563eb;
+      transition: filter .15s ease, transform .1s ease;
+    }
+    button:hover { filter: brightness(1.1); }
+    button:active { transform: scale(0.98); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-green { background: #16a34a; }
+    .btn-amber { background: #d97706; }
+    .btn-gray { background: #334155; color: #cbd5e1; }
+    .btn-go {
+      background: #22c55e;
+      color: #fff;
+      width: 100%;
+      padding: 16px;
+      font-size: 22px;
+      box-shadow: 0 4px 16px rgba(34,197,94,0.3);
+    }
+    .wr-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 440px;
+      gap: 18px;
+    }
+    @media(max-width: 960px) {
+      .wr-grid { grid-template-columns: 1fr; }
+    }
+    textarea {
+      width: 100%;
+      min-height: 54vh;
+      font-size: 19px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 12px;
+      border: 2px solid #475569;
+      background: #0f172a;
+      color: #fff;
+      resize: vertical;
+      font-family: inherit;
+    }
+    textarea:focus { outline: none; border-color: #3b82f6; }
+    .ck-panel {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 15px;
+      border: 1px solid #334155;
+    }
+    .ck-item {
+      padding: 5px 0;
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ck-item.ok { color: #4ade80; }
+    .ck-item.no { color: #94a3b8; }
+    .chip {
+      display: inline-block;
+      margin: 3px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #1e293b;
+      font-size: 13px;
+      border: 1px solid #334155;
+      color: #94a3b8;
+    }
+    .chip.on {
+      background: #16a34a;
+      color: #fff;
+      border-color: #22c55e;
+      font-weight: 600;
+    }
+    .bar-bg {
+      height: 10px;
+      background: #1e293b;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+    .bar-fill {
+      height: 100%;
+      background: #22c55e;
+      transition: width .25s ease;
+    }
+    .opts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media(max-width: 640px) {
+      .opts-grid { grid-template-columns: 1fr; }
+    }
+    .opt-btn {
+      min-height: 70px;
+      font-size: 18px;
+      padding: 12px;
+      border-radius: 10px;
+    }
+    .opt-btn.o0 { background: #dc2626; }
+    .opt-btn.o1 { background: #2563eb; }
+    .opt-btn.o2 { background: #d97706; }
+    .opt-btn.right { outline: 5px solid #4ade80; opacity: 1 !important; }
+    .opt-btn.wrong { outline: 5px solid #f87171; opacity: 0.4; }
+    .opt-btn.dim { opacity: 0.35; }
+    .warning-box {
+      background: #7f1d1d;
+      border: 1px solid #ef4444;
+      color: #fecaca;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      font-size: 15px;
+    }
+    .paste-banner {
+      background: #b91c1c;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 8px;
+      display: none;
+      direction: rtl;
+      text-align: center;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: rgba(15,23,42,0.97);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+    .overlay.active { display: flex; }
+  </style>
+</head>
+<body translate="no" class="notranslate">
+
+<div class="wrap" id="app"></div>
+
+<!-- Away / Return overlay -->
+<div id="overlay-return" class="overlay">
+  <div style="font-size: 72px; margin-bottom: 12px">⚠️</div>
+  <div style="font-size: 34px; font-weight: 900; color: #f87171; margin-bottom: 10px" class="he">יצאת ממסך המשימה!</div>
+  <div style="font-size: 21px; max-width: 650px; line-height: 1.6; margin-bottom: 24px" class="he">
+    היציאה נרשמת בדוח הבדיקה של המורה מרדכי.<br>
+    יש לחזור למסך מלא באופן מיידי ולהמשיך במשימה.
+  </div>
+  <button id="btn-return" class="btn-green" style="font-size: 26px; padding: 18px 40px; border-radius: 18px; box-shadow: 0 6px 25px rgba(34,197,94,0.4)">
+    🔄 חזור למשימה (מסך מלא)
+  </button>
+</div>
+
+<!-- Esc Warning Overlay -->
+<div id="overlay-esc" class="overlay" style="background: rgba(185,28,28,0.94); z-index: 1000000;">
+  <div style="font-size: 64px; font-weight: 900">⚠️ STOP / עצור!</div>
+  <div style="font-size: 26px; font-weight: bold; margin-top: 14px" class="he">אם תצא — תירשם יציאה בדוח.</div>
+  <div style="font-size: 20px; margin-top: 16px">עזוב את מקש Esc · Release Esc</div>
+</div>
+
+<script>
+// ================= DATA & CONSTANTS =================
+const CONNECTORS_ALL = [
+  'however', 'moreover', 'in addition', 'for example', 'for instance',
+  'in my opinion', 'to sum up', 'on the other hand', 'therefore',
+  'first of all', 'secondly', 'because', 'although'
+];
+
+const COMMON_WORDS = new Set('the a an to i and is in of you it my we he she they are am be for on that this with not do does have has at so but or can will your our me us him her them was were'.split(' '));
+
+const STAGE_CONFIGS = [
+  { id: 'instructions', name: '0 · הוראות', type: 'instructions' },
+  {
+    id: 'slides',
+    name: '1 · מצגת והסבר',
+    type: 'slides',
+    slides: [
+      {
+        title: 'Your Module C practice exam',
+        body: `
+          <div style="font-size: 21px; line-height: 1.7;">
+            <p style="font-size: 26px; font-weight: 800; margin-bottom: 12px;">Results from practice exam:</p>
+            <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:14px 0;">
+              <span style="background:#064e3b; color:#6ee7b7; padding:10px 18px; border-radius:12px; font-size:24px; font-weight:bold;">Vocabulary: 88% ✅</span>
+              <span style="background:#1e3a8a; color:#93c5fd; padding:10px 18px; border-radius:12px; font-size:24px; font-weight:bold;">Reading: 74%</span>
+              <span style="background:#7f1d1d; color:#fca5a5; padding:10px 18px; border-radius:12px; font-size:24px; font-weight:bold; border:2px solid #ef4444;">Writing: 53% ⚠️</span>
+            </div>
+            <p style="font-size: 24px; font-weight: 700; color: #fbbf24; text-align: center; margin-top: 18px;">Writing is 30 points of the exam. Today we fix it.</p>
+            <p class="he" style="text-align: center; color: #94a3b8; font-size: 20px; margin-top: 6px;">החיבור שווה 30 נקודות בבגרות (Module C). היום מתקנים ומעלים את הציון.</p>
+          </div>
+        `,
+        check: {
+          q: 'Which part was the weakest?',
+          opts: ['Writing', 'Vocabulary', 'Reading'],
+          c: 0
+        }
+      },
+      {
+        title: 'The 4-step paragraph',
+        body: `
+          <div style="font-size: 20px; line-height: 1.6;">
+            <div style="display:grid; gap:10px; margin:12px 0;">
+              <div style="background:#0f172a; border-left:6px solid #3b82f6; padding:10px 16px; border-radius:8px;">
+                <b style="color:#60a5fa; font-size:22px;">1 · Opinion:</b> <i>In my opinion… / I believe…</i>
+              </div>
+              <div style="background:#0f172a; border-left:6px solid #10b981; padding:10px 16px; border-radius:8px;">
+                <b style="color:#34d399; font-size:22px;">2 · Reason:</b> <i>because… / First,…</i>
+              </div>
+              <div style="background:#0f172a; border-left:6px solid #f59e0b; padding:10px 16px; border-radius:8px;">
+                <b style="color:#fbbf24; font-size:22px;">3 · Example:</b> <i>For example… / For instance…</i>
+              </div>
+              <div style="background:#0f172a; border-left:6px solid #8b5cf6; padding:10px 16px; border-radius:8px;">
+                <b style="color:#c084fc; font-size:22px;">4 · Conclusion:</b> <i>To sum up… / In conclusion…</i>
+              </div>
+            </div>
+            <p style="font-size: 20px; font-weight: 700; color: #fde047; text-align: center; margin: 10px 0;">Organization was the lowest score (62%). Follow the 4 steps and you get the points.</p>
+            <p class="he" style="text-align: center; color: #94a3b8; font-size: 18px;">מבנה הפסקה קיבל את הציון הנמוך ביותר (62%). פעלו לפי 4 השלבים ותקבלו את מלוא הנקודות.</p>
+          </div>
+        `,
+        check: {
+          q: 'What comes right after your opinion?',
+          opts: ['A reason', 'A conclusion', 'Random words'],
+          c: 0
+        }
+      },
+      {
+        title: 'Rules for today',
+        body: `
+          <div style="font-size: 20px; line-height: 1.6;">
+            <ul style="list-style:none; padding:0; margin:10px 0; display:grid; gap:10px;">
+              <li style="background:#0f172a; padding:10px 14px; border-radius:8px;">
+                ✍️ <b>Full, real sentences:</b> ("she feeling" ✗ → "she feels" ✓)
+              </li>
+              <li style="background:#7f1d1d; color:#fee2e2; padding:10px 14px; border-radius:8px;">
+                🚫 <b>Nonsense, word lists or Hebrew = blocked, 0 points</b>
+              </li>
+              <li style="background:#0f172a; padding:10px 14px; border-radius:8px;">
+                🌐 <b>No Google Translate</b>
+              </li>
+              <li style="background:#0f172a; padding:10px 14px; border-radius:8px;">
+                📖 <b>Use the guide on the side and the word bank</b>
+              </li>
+              <li style="background:#0f172a; padding:10px 14px; border-radius:8px;">
+                🚫 <b>No Copy/Paste — Write every word yourself</b>
+              </li>
+            </ul>
+            <p class="he" style="text-align: center; color: #fca5a5; font-size: 19px; font-weight: bold;">רשימות מילים סתמיות או עברית נחסמות אוטומטית. כותבים משפטים שלמים באנגלית.</p>
+          </div>
+        `,
+        check: {
+          q: 'What happens if you type random words?',
+          opts: ['It is blocked, 0 points', 'You get 100 points', 'Nothing'],
+          c: 0
+        }
+      }
+    ]
+  },
+  {
+    id: 'writing1',
+    name: '2 · ✍️ Writing 1: Phones',
+    type: 'writing',
+    title: 'Writing Task 1 · Phones in School 📱 (Opinion)',
+    minWords: 80,
+    needWords: 5,
+    needConn: 3,
+    needParas: 3,
+    words: [
+      'advantage', 'disadvantage', 'opinion', 'reason', 'result',
+      'purpose', 'solution', 'opportunity', 'participate', 'suggest',
+      'decision', 'improve', 'skill', 'support', 'successful'
+    ],
+    connectors: CONNECTORS_ALL,
+    checks: [
+      { k: 'opinion', label: 'Opinion: "In my opinion / I believe…"', re: '\\b(in my opinion|i think|i believe|i feel|in my view)\\b' },
+      { k: 'reason', label: 'Reason: "Because / Since / First of all…"', re: '\\b(because|since|first of all|the reason|reason is)\\b' },
+      { k: 'example', label: 'Example: "For example / For instance…"', re: '\\b(for example|for instance|such as)\\b' },
+      { k: 'conclusion', label: 'Conclusion: "To sum up / In conclusion / Therefore…"', re: '\\b(to sum up|in conclusion|therefore|all in all)\\b' }
+    ],
+    prompt: `
+      <div>
+        <p style="font-size:21px; margin:0 0 6px"><b>📱 Should students be allowed to use phones in school?</b> Write an opinion essay.</p>
+        <p class="he" style="font-size:18px; margin:0">כתבו חיבור דעה: האם צריך לאפשר לתלמידים להשתמש בטלפונים בבית הספר? לפחות 80 מילים, 3 פסקאות.</p>
+      </div>
+    `,
+    guide: `
+      <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px 12px; margin-bottom:12px; font-size:13px; line-height:1.5">
+        <div style="font-weight:bold; color:#fbbf24; margin-bottom:6px">📝 Paragraph Guide & Sentence Starters:</div>
+        <div style="margin-bottom:4px"><b>¶ 1 — Opening & Opinion:</b> <i>In my opinion,... / I believe that students should (not) be allowed to use phones in school because...</i></div>
+        <div style="margin-bottom:4px"><b>¶ 2 — Reasons & Examples:</b> <i>First of all,... For example,... In addition,... However, some people think that...</i></div>
+        <div><b>¶ 3 — Conclusion:</b> <i>To sum up,... Therefore, I believe that...</i></div>
+      </div>
+    `
+  },
+  {
+    id: 'writing2',
+    name: '3 · ✍️ Writing 2: Inspiring Person',
+    type: 'writing',
+    title: 'Writing Task 2 · An Inspiring Person 🌟',
+    minWords: 80,
+    needWords: 5,
+    needConn: 3,
+    needParas: 3,
+    words: [
+      'inspire', 'support', 'successful', 'improve', 'skill',
+      'experience', 'opportunity', 'volunteer', 'community', 'decision',
+      'purpose', 'opinion', 'reason', 'proud', 'help'
+    ],
+    connectors: CONNECTORS_ALL,
+    checks: [
+      { k: 'person', label: 'Intro & Person: "A person who inspires / In my opinion…"', re: '\\b(a person who|in my opinion|i think|i believe|inspires me)\\b' },
+      { k: 'reason', label: 'Reason: "Because / First of all / The reason…"', re: '\\b(because|first of all|the reason|since)\\b' },
+      { k: 'example', label: 'Example: "For example / For instance / When…"', re: '\\b(for example|for instance|such as|always)\\b' },
+      { k: 'conclusion', label: 'Conclusion: "To sum up / Therefore / In conclusion…"', re: '\\b(to sum up|therefore|in conclusion|all in all)\\b' }
+    ],
+    prompt: `
+      <div>
+        <p style="font-size:21px; margin:0 0 6px"><b>🌟 Describe a person who inspires you and explain why.</b></p>
+        <p class="he" style="font-size:18px; margin:0">תארו אדם שנותן לכם השראה (בן משפחה, מורה, חבר, או דמות מפורסמת) והסבירו מדוע. לפחות 80 מילים, 3 פסקאות.</p>
+      </div>
+    `,
+    guide: `
+      <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px 12px; margin-bottom:12px; font-size:13px; line-height:1.5">
+        <div style="font-weight:bold; color:#fbbf24; margin-bottom:6px">📝 Structure & Sentence Starters:</div>
+        <div style="margin-bottom:4px"><b>¶ 1 — Who inspires you:</b> <i>A person who inspires me is... In my opinion, this person is special because...</i></div>
+        <div style="margin-bottom:4px"><b>¶ 2 — Why & Examples:</b> <i>First of all, he/she always supports... For example,... In addition, he/she taught me to improve my... However, it was not always easy.</i></div>
+        <div><b>¶ 3 — Conclusion & Impact:</b> <i>To sum up, this person is a real role model for me. Therefore, I want to learn from his/her experience.</i></div>
+      </div>
+    `
+  },
+  { id: 'finish', name: '4 · 📤 סיום ושליחה', type: 'finish' }
+];
+
+// ================= STATE MANAGEMENT =================
+const STORAGE_KEY = 'itamar_writing_task_state_v1';
+let S = {
+  stageIdx: 0,
+  slideIdx: 0,
+  started: false,
+  submitted: false,
+  startTime: null,
+  submitTime: null,
+  stageTimes: { 0:0, 1:0, 2:0, 3:0, 4:0 },
+  slideAnswers: {}, // { slideIndex: chosenOption }
+  w1: { text: '', pastes: 0, blockedCount: 0 },
+  w2: { text: '', pastes: 0, blockedCount: 0 },
+  exits: [], // [ { start, end, durationSec, reason } ]
+  pastes: [], // [ { time, stage, type } ]
+  translations: [], // [ { time } ]
+  reloads: [], // [ { time } ]
+  totalAwaySec: 0
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      S = Object.assign(S, saved);
+      S.reloads.push({ time: new Date().toISOString() });
+      saveState();
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(S));
+  } catch(e) {}
+}
+
+// ================= EVALUATION ENGINE (FROM server.js) =================
+const WRX = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+function evalWriting(st, text) {
+  const raw = String(text || '').trim();
+  const low = ' ' + raw.toLowerCase().replace(/[’']/g, "'") + ' ';
+  const has = w => new RegExp('(^|[^a-z])' + WRX(w) + "(s|es|d|ed|ing|ful|ment|ies)?([^a-z]|$)").test(low);
+  const toks = (raw.match(/[A-Za-z][A-Za-z'’-]*/g) || []).map(x => x.toLowerCase());
+
+  const reasons = [];
+  const hebrew = /[֐-׿]/.test(raw);
+  if (hebrew) {
+    reasons.push('English only! No Hebrew letters (רק באנגלית)');
+  }
+
+  const MASH_RE = /(asdf|sdfg|dfgh|fghj|ghjk|hjkl|qwer|wert|erty|rtyu|tyui|yuio|uiop|zxcv|xcvb|cvbn|vbnm|jkl)/i;
+  const junkWords = [];
+  const seen = {};
+  let consecutiveRepeats = 0;
+
+  for (let i = 0; i < toks.length; i++) {
+    const w = toks[i];
+    seen[w] = (seen[w] || 0) + 1;
+    if (i > 0 && w === toks[i - 1] && !COMMON_WORDS.has(w)) {
+      consecutiveRepeats++;
+    }
+    const isMash = MASH_RE.test(w);
+    const noVowels = !/[aeiouy]/.test(w) && w.length >= 2;
+    const tripleChar = /(.)\1\1/.test(w);
+    const badLen = w.length > 18 || (w.length === 1 && w !== 'i' && w !== 'a');
+    if (isMash || noVowels || tripleChar || badLen) {
+      if (!junkWords.includes(w)) junkWords.push(w);
+    }
+  }
+
+  if (junkWords.length > 0) {
+    reasons.push('Remove gibberish / nonsense letters: "' + junkWords.slice(0, 3).join('", "') + '"');
+  }
+
+  if (consecutiveRepeats > 0) {
+    reasons.push('Do not repeat the exact same word side-by-side');
+  }
+
+  for (const [w, count] of Object.entries(seen)) {
+    if (!COMMON_WORDS.has(w)) {
+      if (toks.length <= 10 && count >= 2 && (count / toks.length) >= 0.4) {
+        reasons.push(`Too many repetitions of "${w}"`);
+        break;
+      } else if (toks.length > 10 && ((count >= 5 && (count / toks.length) > 0.15) || count > 12)) {
+        reasons.push(`Too many repetitions of "${w}"`);
+        break;
+      }
+    }
+  }
+
+  const vocabWords = (st.words || []).filter(has);
+  const connWords = (st.connectors || []).filter(has);
+  const bankAndConn = new Set((st.words || []).concat(st.connectors || []).flatMap(x => x.split(' ')));
+  let run = 0, maxRun = 0, listWordCount = 0;
+  for (const w of toks) {
+    if (bankAndConn.has(w) && !COMMON_WORDS.has(w)) {
+      listWordCount++;
+      run++;
+      maxRun = Math.max(maxRun, run);
+    } else {
+      run = 0;
+    }
+  }
+  const isListDump = toks.length > 3 && (maxRun >= 3 || (listWordCount / toks.length > 0.6 && toks.length > 5));
+  if (isListDump) {
+    reasons.push('Do not just list connectors or vocabulary words — write complete sentences');
+  }
+
+  const blocked = reasons.length > 0;
+  const realWords = toks.filter(w => !junkWords.includes(w)).length;
+  const words = blocked ? 0 : realWords;
+  const vocab = blocked ? [] : vocabWords;
+  const conn = blocked ? [] : connWords;
+  const paras = blocked ? 0 : raw.split(/\n\s*\n|\n/).filter(x => (x.match(/[A-Za-z]+/g) || []).length >= 6).length;
+
+  const checks = {
+    len: !blocked && words >= (st.minWords || 80),
+    vocab: !blocked && vocab.length >= (st.needWords || 5),
+    conn: !blocked && conn.length >= (st.needConn || 3),
+    paras: !blocked && paras >= (st.needParas || 3),
+    real: !blocked
+  };
+
+  (st.checks || []).forEach(c => {
+    checks[c.k] = !blocked && new RegExp(c.re, 'i').test(low);
+  });
+
+  let pts = 0;
+  if (!blocked) {
+    pts = Math.min(words, 180) * 3 + vocab.length * 40 + conn.length * 40 + Object.values(checks).filter(Boolean).length * 80;
+    pts = Math.min(pts, 2000);
+  }
+
+  return {
+    words: realWords,
+    junk: junkWords.length,
+    vocab: vocabWords,
+    conn: connWords,
+    paras,
+    checks,
+    hebrew,
+    blocked,
+    reasons,
+    pts
+  };
+}
+
+// ================= INTEGRITY & MONITORING =================
+let isAway = false;
+let awayStart = null;
+const overlayReturn = document.getElementById('overlay-return');
+const overlayEsc = document.getElementById('overlay-esc');
+
+async function enterFullscreenLock() {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+    }
+  } catch(e) {}
+  try {
+    if (navigator.keyboard && navigator.keyboard.lock) {
+      await navigator.keyboard.lock(['Escape', 'MetaLeft', 'MetaRight', 'AltLeft', 'Tab', 'F11']);
+    }
+  } catch(e) {}
+}
+
+function handleAway(reason) {
+  if (!S.started || S.submitted || isAway) return;
+  isAway = true;
+  awayStart = Date.now();
+  S.exits.push({
+    start: new Date().toISOString(),
+    end: null,
+    durationSec: 0,
+    reason: reason
+  });
+  saveState();
+  overlayReturn.classList.add('active');
+  updateTopBar();
+}
+
+function handleReturn() {
+  if (!isAway) return;
+  const now = Date.now();
+  const durSec = awayStart ? Math.round((now - awayStart) / 1000) : 0;
+  isAway = false;
+  awayStart = null;
+  S.totalAwaySec += durSec;
+  if (S.exits.length > 0) {
+    const last = S.exits[S.exits.length - 1];
+    last.end = new Date().toISOString();
+    last.durationSec = durSec;
+  }
+  saveState();
+  overlayReturn.classList.remove('active');
+  updateTopBar();
+}
+
+document.getElementById('btn-return').onclick = async () => {
+  await enterFullscreenLock();
+  handleReturn();
+};
+
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement && S.started && !S.submitted) {
+    handleAway('fullscreen_exit');
+  } else if (document.fullscreenElement && isAway) {
+    handleReturn();
+  }
+});
+
+window.addEventListener('blur', () => {
+  if (S.started && !S.submitted) handleAway('window_blur');
+});
+
+window.addEventListener('focus', () => {
+  if (isAway && document.fullscreenElement) handleReturn();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && S.started && !S.submitted) {
+    handleAway('tab_hidden');
+  } else if (!document.hidden && isAway && document.fullscreenElement) {
+    handleReturn();
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && S.started && !S.submitted) {
+    overlayEsc.classList.add('active');
+    e.preventDefault();
+  }
+}, true);
+
+window.addEventListener('keyup', e => {
+  if (e.key === 'Escape') overlayEsc.classList.remove('active');
+}, true);
+
+// Google Translate detection
+let lastTranslated = false;
+function checkGoogleTranslate() {
+  const doc = document.documentElement;
+  const isTr = /translated-(ltr|rtl)/.test(doc.className) ||
+               doc.lang !== 'en' ||
+               !!document.querySelector('font[style*="vertical-align"]') ||
+               !!document.querySelector('.goog-te-banner-frame, #goog-gt-tt');
+  if (isTr !== lastTranslated) {
+    lastTranslated = isTr;
+    if (isTr && S.started && !S.submitted) {
+      S.translations.push({ time: new Date().toISOString() });
+      saveState();
+      updateTopBar();
+    }
+  }
+}
+new MutationObserver(checkGoogleTranslate).observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'lang'] });
+setInterval(checkGoogleTranslate, 1000);
+
+// Timer ticking
+setInterval(() => {
+  if (S.started && !S.submitted && !isAway) {
+    S.stageTimes[S.stageIdx] = (S.stageTimes[S.stageIdx] || 0) + 1;
+    saveState();
+  }
+}, 1000);
+
+// ================= UI RENDERING =================
+const app = document.getElementById('app');
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function fmtSec(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}m ${s < 10 ? '0' : ''}${s}s`;
+}
+
+function updateTopBar() {
+  const el = document.getElementById('top-bar-stats');
+  if (el) {
+    el.innerHTML = `🚪 יציאות: <b>${S.exits.length}</b> &nbsp;|&nbsp; 📋 הדבקות: <b>${S.pastes.length}</b> &nbsp;|&nbsp; 🌐 תרגום: <b>${S.translations.length}</b>`;
+  }
+}
+
+function renderHeader() {
+  const stepsHtml = STAGE_CONFIGS.map((cfg, i) => {
+    let cls = '';
+    if (i === S.stageIdx) cls = 'active';
+    else if (i < S.stageIdx) cls = 'done';
+    return `<div class="nav-step ${cls}" onclick="goToStage(${i})">${esc(cfg.name)}</div>`;
+  }).join('');
+
+  return `
+    <div class="nav-steps">${stepsHtml}</div>
+    <div class="top-bar">
+      <span>👤 <b>Itamar Yochanan (יוחנן איתמר)</b> · י3</span>
+      <span id="top-bar-stats">
+        🚪 יציאות: <b>${S.exits.length}</b> &nbsp;|&nbsp; 📋 הדבקות: <b>${S.pastes.length}</b> &nbsp;|&nbsp; 🌐 תרגום: <b>${S.translations.length}</b>
+      </span>
+    </div>
+  `;
+}
+
+function goToStage(idx) {
+  if (idx < 0 || idx >= STAGE_CONFIGS.length) return;
+  if (!S.started && idx > 0) return;
+  S.stageIdx = idx;
+  saveState();
+  render();
+}
+
+function renderInstructions() {
+  app.innerHTML = `
+    <div class="card" style="max-width:850px; margin:24px auto; padding:32px">
+      <h1 style="color:#fbbf24; text-align:center; font-size:34px; margin-bottom:18px">שלום איתמר!</h1>
+      <div class="he" style="background:#0f172a; border:2px solid #3b82f6; border-radius:14px; padding:24px; margin-bottom:24px; font-size:21px; line-height:1.75">
+        <p style="font-size:24px; font-weight:bold; color:#60a5fa; margin-top:0">זו משימת כתיבה באנגלית מהשיעור של היום (מודול C).</p>
+        <div style="margin:14px 0"><b>חוקי המשימה:</b></div>
+        <ul style="margin:0; padding-right:24px; list-style-type:disc">
+          <li><b>אסור להשתמש בגוגל טרנסלייט או בכל מתרגם.</b></li>
+          <li><b>אסור להעתיק או להדביק טקסט</b> (Copy/Paste חסום ונרשם במערכת).</li>
+          <li><b>אסור לצאת מהמסך</b> עד שתסיים ותלחץ על "שליחת התשובות". כל יציאה נרשמת.</li>
+          <li><b>כתוב משפטים אמיתיים באנגלית;</b> טקסט לא אמיתי נחסם ולא נספר.</li>
+        </ul>
+        <div style="margin-top:16px; color:#94a3b8; font-size:18px">
+          המערכת רושמת את הזמן, היציאות מהמסך, ניסיונות הדבקה ותרגום, ואת מה שכתבת. המורה מרדכי יקבל את הכל.
+        </div>
+        <div style="margin-top:18px; font-weight:bold; color:#4ade80; font-size:22px; text-align:center">
+          בהצלחה ורפואה שלמה! 🙏
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:20px 0; direction:rtl">
+        <input type="checkbox" id="chk-read" style="width:24px; height:24px; cursor:pointer" ${S.started ? 'checked' : ''}>
+        <label for="chk-read" style="font-size:21px; cursor:pointer; margin:0; font-weight:700">קראתי והבנתי את כל החוקים</label>
+      </div>
+
+      <button id="btn-start" class="btn-go" ${S.started ? '' : 'disabled'}>
+        🔒 ${S.started ? 'המשך במשימה (מסך מלא)' : 'התחל משימה (מסך מלא)'}
+      </button>
+    </div>
+  `;
+
+  const chk = document.getElementById('chk-read');
+  const btn = document.getElementById('btn-start');
+  chk.onchange = () => { btn.disabled = !chk.checked; };
+  btn.onclick = async () => {
+    if (!S.startTime) S.startTime = new Date().toISOString();
+    S.started = true;
+    saveState();
+    await enterFullscreenLock();
+    goToStage(1);
+  };
+}
+
+function renderSlides() {
+  const cfg = STAGE_CONFIGS[1];
+  const slide = cfg.slides[S.slideIdx];
+  const totalSlides = cfg.slides.length;
+  const answered = S.slideAnswers[S.slideIdx] !== undefined;
+  const picked = S.slideAnswers[S.slideIdx];
+
+  const optsHtml = slide.check.opts.map((opt, i) => {
+    let cls = `o${i % 3}`;
+    if (answered) {
+      if (i === slide.check.c) cls += ' right';
+      else if (i === picked) cls += ' wrong';
+      else cls += ' dim';
+    }
+    return `
+      <button class="opt-btn ${cls}" onclick="answerSlide(${i})" ${answered ? 'disabled' : ''}>
+        ${esc(opt)}
+      </button>
+    `;
+  }).join('');
+
+  const fbHtml = answered
+    ? (picked === slide.check.c
+        ? `<div style="font-size:24px; font-weight:bold; color:#4ade80; text-align:center; margin-top:14px">✅ Correct! · נכון מאוד</div>`
+        : `<div style="font-size:24px; font-weight:bold; color:#f87171; text-align:center; margin-top:14px">❌ Not quite. Answer: ${esc(slide.check.opts[slide.check.c])}</div>`)
+    : '';
+
+  app.innerHTML = `
+    ${renderHeader()}
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px">
+        <h2 style="margin:0">${esc(slide.title)}</h2>
+        <span style="background:#fbbf24; color:#0f172a; font-weight:900; padding:4px 12px; border-radius:999px; font-size:16px">
+          Slide ${S.slideIdx + 1} / ${totalSlides}
+        </span>
+      </div>
+      <div>${slide.body}</div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:22px; font-weight:700; margin-bottom:10px">✋ ${esc(slide.check.q)}</div>
+      <div class="opts-grid">${optsHtml}</div>
+      ${fbHtml}
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px">
+      <div>
+        ${S.slideIdx > 0 ? `<button class="btn-gray" onclick="changeSlide(-1)">◀ Slide קודם</button>` : ''}
+        ${S.slideIdx < totalSlides - 1 ? `<button class="btn-gray" onclick="changeSlide(1)" style="margin-inline-start:8px">Slide הבא ▶</button>` : ''}
+      </div>
+      <button class="btn-green" onclick="goToStage(2)">
+        המשך למשימת כתיבה 1 📱 ⏭
+      </button>
+    </div>
+  `;
+}
+
+function answerSlide(choice) {
+  S.slideAnswers[S.slideIdx] = choice;
+  saveState();
+  render();
+}
+
+function changeSlide(delta) {
+  const next = S.slideIdx + delta;
+  if (next >= 0 && next < STAGE_CONFIGS[1].slides.length) {
+    S.slideIdx = next;
+    saveState();
+    render();
+  }
+}
+
+function buildChecklistHtml(evalRes, cfg) {
+  const c = evalRes.checks;
+  const pct = Math.min(100, Math.round((evalRes.words || 0) / cfg.minWords * 100));
+
+  const ckItem = (ok, text) => `
+    <div class="ck-item ${ok ? 'ok' : 'no'}">
+      <span>${ok ? '✅' : '⬜'}</span>
+      <span>${esc(text)}</span>
+    </div>
+  `;
+
+  return `
+    ${cfg.guide}
+    <div style="font-size:22px; font-weight:900; margin-bottom:6px">⭐ ${evalRes.pts} pts</div>
+    <div style="display:flex; justify-content:space-between; font-size:15px">
+      <span>Words: <b>${evalRes.words}</b> / ${cfg.minWords}</span>
+      <span>Paragraphs: <b>${evalRes.paras}</b> / ${cfg.needParas}</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>
+
+    ${evalRes.blocked ? `
+      <div class="warning-box">
+        <b>🚫 Anti-Basura: Fix the following issues:</b>
+        <div style="margin-top:6px; font-size:13px; line-height:1.4">
+          ${evalRes.reasons.map(r => `• ${esc(r)}`).join('<br>')}
+        </div>
+      </div>
+    ` : ''}
+
+    <div style="margin-top:10px">
+      ${ckItem(c.len, `${cfg.minWords}+ words · מילים`)}
+      ${ckItem(c.vocab, `${cfg.needWords}+ Bagrut words (${evalRes.vocab.length}) · מילות בגרות`)}
+      ${ckItem(c.conn, `${cfg.needConn}+ connectors (${evalRes.conn.length}) · מילות קישור`)}
+      ${(cfg.checks || []).map(x => ckItem(c[x.k], x.label)).join('')}
+      ${ckItem(c.paras, `${cfg.needParas} paragraphs · ${cfg.needParas} פסקאות (Enter)`)}
+      ${ckItem(c.real, 'Real sentences · משפטים אמיתיים')}
+    </div>
+
+    <div style="margin-top:12px">
+      <div style="font-weight:bold; font-size:14px; margin-bottom:4px">Bagrut words:</div>
+      <div>
+        ${cfg.words.map(w => `<span class="chip ${evalRes.vocab.includes(w) ? 'on' : ''}">${esc(w)}</span>`).join('')}
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <div style="font-weight:bold; font-size:14px; margin-bottom:4px">Connectors:</div>
+      <div>
+        ${cfg.connectors.map(w => `<span class="chip ${evalRes.conn.includes(w) ? 'on' : ''}">${esc(w)}</span>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function handlePasteAttempt(stageId, type) {
+  const wKey = stageId === 'writing1' ? 'w1' : 'w2';
+  S[wKey].pastes = (S[wKey].pastes || 0) + 1;
+  S.pastes.push({
+    time: new Date().toISOString(),
+    stage: stageId,
+    type: type
+  });
+  saveState();
+  updateTopBar();
+
+  const banner = document.getElementById('paste-warning');
+  if (banner) {
+    banner.style.display = 'block';
+    banner.textContent = `🚫 Copy/Paste חסום! עליך להקליד את הטקסט בעצמך. (הניסיון נרשם בדוח · ניסיון מס' ${S.pastes.length})`;
+    clearTimeout(banner._timer);
+    banner._timer = setTimeout(() => { banner.style.display = 'none'; }, 4000);
+  }
+}
+
+function renderWriting(stageIdx) {
+  const cfg = STAGE_CONFIGS[stageIdx];
+  const wKey = cfg.id === 'writing1' ? 'w1' : 'w2';
+  const text = S[wKey].text || '';
+  const evalRes = evalWriting(cfg, text);
+
+  const prevIdx = stageIdx - 1;
+  const nextIdx = stageIdx + 1;
+  const nextLabel = cfg.id === 'writing1'
+    ? 'המשך למשימה 2 (דמות מעוררת השראה) 🌟 ⏭'
+    : 'המשך לסיום ובדיקה לפני שליחה 📤 ⏭';
+
+  app.innerHTML = `
+    ${renderHeader()}
+    <div class="card" style="margin-top:0">${cfg.prompt}</div>
+    <div class="wr-grid">
+      <div>
+        <textarea id="writing-area" spellcheck="false" autocomplete="off" autocorrect="off" translate="no" placeholder="Start typing your essay here… · התחילו לכתוב כאן">${esc(text)}</textarea>
+        <div id="paste-warning" class="paste-banner"></div>
+      </div>
+      <div class="ck-panel" id="ck-container">
+        ${buildChecklistHtml(evalRes, cfg)}
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px">
+      <button class="btn-gray" onclick="goToStage(${prevIdx})">⏮ חזרה לשלב הקודם</button>
+      <button class="btn-green" onclick="goToStage(${nextIdx})">${nextLabel}</button>
+    </div>
+  `;
+
+  const ta = document.getElementById('writing-area');
+  let inputTimer = null;
+
+  ta.addEventListener('input', () => {
+    clearTimeout(inputTimer);
+    inputTimer = setTimeout(() => {
+      const v = ta.value;
+      S[wKey].text = v;
+      const res = evalWriting(cfg, v);
+      if (res.blocked && v.trim().length > 10) {
+        S[wKey].blockedCount = (S[wKey].blockedCount || 0) + 1;
+      }
+      saveState();
+      const cont = document.getElementById('ck-container');
+      if (cont) cont.innerHTML = buildChecklistHtml(res, cfg);
+    }, 200);
+  });
+
+  ta.addEventListener('paste', e => { e.preventDefault(); handlePasteAttempt(cfg.id, 'paste_event'); });
+  ta.addEventListener('drop', e => { e.preventDefault(); handlePasteAttempt(cfg.id, 'drop_event'); });
+  ta.addEventListener('contextmenu', e => { e.preventDefault(); handlePasteAttempt(cfg.id, 'contextmenu'); });
+  ta.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'V')) {
+      e.preventDefault();
+      handlePasteAttempt(cfg.id, 'shortcut_paste');
+    }
+  });
+}
+
+// SHA-256 (Pure Web Crypto with zero dependencies)
+async function computeSha256(str) {
+  const enc = new TextEncoder();
+  const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function buildSubmissionReport() {
+  const cfgW1 = STAGE_CONFIGS[2];
+  const cfgW2 = STAGE_CONFIGS[3];
+  const ev1 = evalWriting(cfgW1, S.w1.text);
+  const ev2 = evalWriting(cfgW2, S.w2.text);
+
+  const totalActSec = Object.values(S.stageTimes).reduce((a, b) => a + b, 0);
+
+  let r = '';
+  r += 'TAREA ITAMAR YOCHANAN 23-NOV\n';
+  r += '========================================\n';
+  r += 'ALUMNO: Itamar Yochanan (יוחנן איתמר)\n';
+  r += 'CLASE: י3 | MEJANEL: הרב עודד גולדשטיין\n';
+  r += `INICIO: ${S.startTime || 'N/A'}\n`;
+  r += `FIN: ${S.submitTime || new Date().toISOString()}\n`;
+  r += `TIEMPO ACTIVO TOTAL: ${fmtSec(totalActSec)}\n`;
+  r += 'TIEMPO POR ETAPA:\n';
+  r += `  - Instrucciones: ${fmtSec(S.stageTimes[0] || 0)}\n`;
+  r += `  - Slides: ${fmtSec(S.stageTimes[1] || 0)}\n`;
+  r += `  - Writing 1 (Phones): ${fmtSec(S.stageTimes[2] || 0)}\n`;
+  r += `  - Writing 2 (Inspiring): ${fmtSec(S.stageTimes[3] || 0)}\n`;
+  r += `  - Cierre/Revisión: ${fmtSec(S.stageTimes[4] || 0)}\n\n`;
+
+  r += 'INTEGRIDAD Y MONITOREO:\n';
+  r += `- Salidas de pantalla / fullscreen: ${S.exits.length} (tiempo fuera: ${S.totalAwaySec}s)\n`;
+  if (S.exits.length > 0) {
+    S.exits.forEach((x, i) => {
+      r += `    #${i + 1}: inicio=${x.start}, dur=${x.durationSec}s, motivo=${x.reason}\n`;
+    });
+  }
+  r += `- Intentos de copiar/pegar bloqueados: ${S.pastes.length}\n`;
+  if (S.pastes.length > 0) {
+    S.pastes.forEach((p, i) => {
+      r += `    #${i + 1}: ${p.time} (${p.stage}, ${p.type})\n`;
+    });
+  }
+  r += `- Detecciones de traductor (Google Translate): ${S.translations.length}\n`;
+  r += `- Cierres / recargas de página: ${S.reloads.length}\n\n`;
+
+  r += 'PREGUNTAS DE MÓDULO (SLIDES):\n';
+  cfgW1_slides: for (let s = 0; s < STAGE_CONFIGS[1].slides.length; s++) {
+    const sl = STAGE_CONFIGS[1].slides[s];
+    const ans = S.slideAnswers[s];
+    const ok = ans === sl.check.c;
+    r += `  - Slide ${s + 1}: ${ok ? 'OK' : 'FAIL'} (Respuesta: "${sl.check.opts[ans] || 'N/A'}")\n`;
+  }
+  r += '\n';
+
+  r += '--- WRITING 1: PHONES IN SCHOOL (OPINION) ---\n';
+  r += `Palabras: ${ev1.words} / ${cfgW1.minWords} ${ev1.checks.len ? '(OK)' : '(INCOMPLETO)'}\n`;
+  r += `Párrafos: ${ev1.paras} / ${cfgW1.needParas} ${ev1.checks.paras ? '(OK)' : '(INCOMPLETO)'}\n`;
+  r += `Vocabulario Bagrut (${ev1.vocab.length}): ${ev1.vocab.join(', ') || 'ninguno'}\n`;
+  r += `Conectores (${ev1.conn.length}): ${ev1.conn.join(', ') || 'ninguno'}\n`;
+  r += `Checks cumplidos: ${Object.values(ev1.checks).filter(Boolean).length} / ${Object.keys(ev1.checks).length}\n`;
+  r += `Bloqueos anti-basura registrados: ${S.w1.blockedCount || 0}\n`;
+  r += 'TEXTO COMPLETO WRITING 1:\n';
+  r += `${S.w1.text.trim() || '[Sin texto]'}\n\n`;
+
+  r += '--- WRITING 2: INSPIRING PERSON ---\n';
+  r += `Palabras: ${ev2.words} / ${cfgW2.minWords} ${ev2.checks.len ? '(OK)' : '(INCOMPLETO)'}\n`;
+  r += `Párrafos: ${ev2.paras} / ${cfgW2.needParas} ${ev2.checks.paras ? '(OK)' : '(INCOMPLETO)'}\n`;
+  r += `Vocabulario Bagrut (${ev2.vocab.length}): ${ev2.vocab.join(', ') || 'ninguno'}\n`;
+  r += `Conectores (${ev2.conn.length}): ${ev2.conn.join(', ') || 'ninguno'}\n`;
+  r += `Checks cumplidos: ${Object.values(ev2.checks).filter(Boolean).length} / ${Object.keys(ev2.checks).length}\n`;
+  r += `Bloqueos anti-basura registrados: ${S.w2.blockedCount || 0}\n`;
+  r += 'TEXTO COMPLETO WRITING 2:\n';
+  r += `${S.w2.text.trim() || '[Sin texto]'}\n`;
+  r += '========================================\n';
+
+  const hash = await computeSha256(r);
+  const finalReport = r + `CHK:${hash}\n`;
+  return { report: finalReport, hash };
+}
+
+async function renderFinish() {
+  const cfgW1 = STAGE_CONFIGS[2];
+  const cfgW2 = STAGE_CONFIGS[3];
+  const ev1 = evalWriting(cfgW1, S.w1.text);
+  const ev2 = evalWriting(cfgW2, S.w2.text);
+
+  const w1Ok = ev1.words >= cfgW1.minWords && ev1.paras >= cfgW1.needParas && !ev1.blocked;
+  const w2Ok = ev2.words >= cfgW2.minWords && ev2.paras >= cfgW2.needParas && !ev2.blocked;
+
+  const { report, hash } = await buildSubmissionReport();
+  const waUrl = `https://wa.me/56972152259?text=${encodeURIComponent(report)}`;
+  const mailUrl = `mailto:alanbendov@gmail.com?subject=${encodeURIComponent('TAREA ITAMAR YOCHANAN 23-NOV')}&body=${encodeURIComponent(report)}`;
+
+  if (S.submitted) {
+    app.innerHTML = `
+      ${renderHeader()}
+      <div class="card" style="text-align:center; padding:36px 20px">
+        <div style="font-size:72px">🎉</div>
+        <div style="color:#4ade80; font-size:36px; font-weight:900; margin:10px 0" class="he">התשובות נשלחו! תודה רבה!</div>
+        <p class="he" style="font-size:22px; color:#cbd5e1; max-width:750px; margin:14px auto; line-height:1.7">
+          נפתח וואטסאפ עם התשובות — רק ללחוץ "שלח". אל תשנה את הטקסט.<br>
+          כל הנתונים, הטקסטים וקוד הבדיקה (CHK) נשמרו.
+        </p>
+
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin:24px 0">
+          <a href="${waUrl}" target="_blank" style="text-decoration:none">
+            <button class="btn-green" style="font-size:20px; padding:14px 28px">
+              💬 פתח וואטסאפ שוב
+            </button>
+          </a>
+          <button id="btn-copy-rep" class="btn-amber" style="font-size:20px; padding:14px 28px">
+            📋 העתק דוח ללוח
+          </button>
+          <a href="${mailUrl}" style="text-decoration:none">
+            <button class="btn-gray" style="font-size:20px; padding:14px 28px">
+              ✉️ שלח באימייל גיבוי
+            </button>
+          </a>
+        </div>
+
+        <div style="text-align:left; margin-top:24px">
+          <label style="font-weight:bold; color:#94a3b8; font-size:14px">טקסט הדוח המלא והמאומת (CHK: ${hash.slice(0, 10)}...):</label>
+          <textarea readonly style="font-family:monospace; font-size:13px; min-height:260px; margin-top:6px">${esc(report)}</textarea>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('btn-copy-rep').onclick = () => {
+      navigator.clipboard.writeText(report).then(() => {
+        alert('הדוח הועתק ללוח בהצלחה!');
+      });
+    };
+    return;
+  }
+
+  app.innerHTML = `
+    ${renderHeader()}
+    <div class="card">
+      <h2 style="margin-top:0">📤 סיום ושליחת המשימה</h2>
+      <div style="font-size:18px; color:#cbd5e1; margin-bottom:18px">בדוק את סיכום המשימות לפני השליחה הסופית:</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:14px 0">
+        <div style="background:#0f172a; border-radius:12px; padding:16px; border:1px solid #334155">
+          <h3 style="margin:0 0 10px; color:#fbbf24; font-size:20px">📱 Writing 1: Phones in School</h3>
+          <div>מילים: <b>${ev1.words}</b> / ${cfgW1.minWords} ${ev1.words >= cfgW1.minWords ? '✅' : '⚠️'}</div>
+          <div>פסקאות: <b>${ev1.paras}</b> / ${cfgW1.needParas} ${ev1.paras >= cfgW1.needParas ? '✅' : '⚠️'}</div>
+          <div>ניקוד: <b>${ev1.pts}</b> pts</div>
+          ${ev1.blocked ? '<div style="color:#f87171; font-weight:bold; margin-top:6px">🚫 טקסט חסום (יש לתקן)</div>' : ''}
+          <button class="btn-gray" style="margin-top:12px; font-size:15px; padding:8px 16px" onclick="goToStage(2)">
+            ✏️ ערוך משימה 1
+          </button>
+        </div>
+
+        <div style="background:#0f172a; border-radius:12px; padding:16px; border:1px solid #334155">
+          <h3 style="margin:0 0 10px; color:#fbbf24; font-size:20px">🌟 Writing 2: Inspiring Person</h3>
+          <div>מילים: <b>${ev2.words}</b> / ${cfgW2.minWords} ${ev2.words >= cfgW2.minWords ? '✅' : '⚠️'}</div>
+          <div>פסקאות: <b>${ev2.paras}</b> / ${cfgW2.needParas} ${ev2.paras >= cfgW2.needParas ? '✅' : '⚠️'}</div>
+          <div>ניקוד: <b>${ev2.pts}</b> pts</div>
+          ${ev2.blocked ? '<div style="color:#f87171; font-weight:bold; margin-top:6px">🚫 טקסט חסום (יש לתקן)</div>' : ''}
+          <button class="btn-gray" style="margin-top:12px; font-size:15px; padding:8px 16px" onclick="goToStage(3)">
+            ✏️ ערוך משימה 2
+          </button>
+        </div>
+      </div>
+
+      ${(!w1Ok || !w2Ok) ? `
+        <div class="he" style="background:#78350f; color:#fef3c7; border:1px solid #f59e0b; border-radius:10px; padding:14px; margin:16px 0; font-size:17px">
+          ⚠️ <b>שים לב:</b> אחד החיבורים עדיין לא עומד בכל הדרישות (פחות מ-80 מילים, חסרות פסקאות או שיש חסימת שפה). מומלץ לחזור ולתקן לפני השליחה!
+        </div>
+      ` : ''}
+
+      <button id="btn-submit" class="btn-go" style="margin-top:14px; font-size:26px; padding:20px">
+        📤 שליחת התשובות / Send answers
+      </button>
+    </div>
+  `;
+
+  document.getElementById('btn-submit').onclick = async () => {
+    if (!confirm('האם אתה בטוח שברצונך לשלוח את התשובות למורה מרדכי? לאחר השליחה המשימה תסתיים.')) return;
+    S.submitted = true;
+    S.submitTime = new Date().toISOString();
+    saveState();
+
+    const sub = await buildSubmissionReport();
+    const finalWa = `https://wa.me/56972152259?text=${encodeURIComponent(sub.report)}`;
+    window.open(finalWa, '_blank');
+    render();
+  };
+}
+
+function render() {
+  if (S.stageIdx === 0) renderInstructions();
+  else if (S.stageIdx === 1) renderSlides();
+  else if (S.stageIdx === 2) renderWriting(2);
+  else if (S.stageIdx === 3) renderWriting(3);
+  else if (S.stageIdx === 4) renderFinish();
+}
+
+// Initial bootstrap
+loadState();
+render();
+</script>
+</body>
+</html>
